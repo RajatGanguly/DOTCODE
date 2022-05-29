@@ -1,0 +1,91 @@
+[courseId].js
+import React from "react";
+import Link from "next/link";
+import Head from "next/head";
+import {useRouter} from "next/router";
+
+function Course({products_list}) {
+  const router = useRouter();
+  const {courseId} = router.query;
+  const products = JSON.parse(products_list);
+  console.log(router)
+  // const products = products_list
+//   console.log(products)
+  // console.log(typeof(products))
+  return (
+    <div>
+      <style jsx>
+        {`
+          .w-full {
+            cursor: pointer;
+
+          }
+        `}
+      </style>
+      <Head>
+          <title className="uppercase">{courseId} | .CODE</title>
+      </Head>
+      <section className="text-gray-600 body-font mx-8">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-wrap -m-4">
+            <Link href={"/product/thirt"}>
+              <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg">
+                <a className="block relative h-48 rounded overflow-hidden">
+                  <img
+                    alt="ecommerce"
+                    className="object-cover object-center w-full h-full block"
+                    src="https://dummyimage.com/420x260"
+                  />
+                </a>
+                <div className="mt-4">
+                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                    CATEGORY
+                  </h3>
+                  <h2 className="text-gray-900 title-font text-lg font-medium">
+                    The Catalyzer
+                  </h2>
+                  <p className="mt-1">$16.00</p>
+                </div>
+              </div>
+            </Link>
+            {products["products"].map((product)=>{
+              return (
+              <Link href={"/product/thirt"} key={product._id}>
+              <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg">
+                <a className="block relative h-48 rounded overflow-hidden">
+                  <img
+                    alt="ecommerce"
+                    className="object-cover object-center w-full h-full block"
+                    src="https://dummyimage.com/420x260"
+                  />
+                </a>
+                <div className="mt-4">
+                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                    {product.category}
+                  </h3>
+                  <h2 className="text-gray-900 title-font text-lg font-medium">
+                    {product.title}
+                  </h2>
+                  <p className="mt-1">${product.price}</p>
+                </div>
+              </div>
+            </Link>
+            )})}
+            
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export async function getServerSideProps(context){
+  const tshirt_promise = await fetch("http://localhost:3000/api/getproducts?category=tshirt")
+  const products = await tshirt_promise.json()
+
+  return {
+    props: {products_list: JSON.stringify(products)}
+  }
+}
+
+export default Course;
