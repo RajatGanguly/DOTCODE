@@ -3,7 +3,14 @@ import React from "react";
 import Head from "next/head"
 import { MdAccountCircle } from "react-icons/md";
 
-function Navbar() {
+function Navbar(props) {
+  if(props.user.value){
+    console.log(JSON.parse(props.user.value).authToken)
+  }
+  else{
+    console.log("Not found")
+  }
+  
   return (
     <div className="navCon">
       <Head>
@@ -44,12 +51,22 @@ function Navbar() {
               <a className="mr-5 hover:text-gray-900 md:font-bold">Contact</a>
             </Link>
           </nav>
-          <Link href={"/login"}><button
+          {
+            props.user.value ? 
+            <button
             className="mx-2 inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+            onClick={props.logout}
           >
             <MdAccountCircle className="mx-2" />
-            Account
-          </button></Link>      
+            Logout
+          </button> : 
+          <Link href={"/login"}><button
+          className="mx-2 inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+        >
+          <MdAccountCircle className="mx-2" />
+          Login
+        </button></Link>
+          }      
         </div>
       </header>      
     </div>

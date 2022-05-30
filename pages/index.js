@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const { r } = router.query;
+  r==1?window.location.replace("/"):null;
   return (
     <div>
       <Head>

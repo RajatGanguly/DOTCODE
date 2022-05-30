@@ -3,12 +3,13 @@ import Link from "next/link";
 import Head from "next/head";
 import {useRouter} from "next/router";
 
-function Course({props_contents}) {
+// function Course({props_contents}) {
+function Course() {
   // console.log("Hello")
   const router = useRouter();
   const {courseId} = router.query;
   console.log(courseId)
-  const contents = JSON.parse(props_contents);
+  // const contents = JSON.parse(props_contents);
   // console.log(contents)
   return (
     <div>
@@ -24,7 +25,7 @@ function Course({props_contents}) {
           <title className="uppercase">{courseId} | .CODE</title>
       </Head>
       <section className="text-gray-600 body-font mx-0">
-        <div className="container px-5 py-24 mx-auto">
+        {/* <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
             {contents["result"].map((content)=>{
               return (
@@ -50,21 +51,25 @@ function Course({props_contents}) {
             )})}
             
           </div>
+        </div> */}
+        <div className="comming">
+          <h1 className="my-16 text-blue-900 font-extrabold text-4xl">Contents are on their way</h1>
+          <h1 className="my-16 text-blue-900 font-extrabold text-4xl">Just give them some time</h1>
         </div>
       </section>
     </div>
   );
 }
 
-export async function getServerSideProps(context){
-  const c_name = context.params.courseId;
-  const course_promise = await fetch(`http://localhost:3000/api/getlessons?c_name=${c_name}`)
-  const props_contents = await course_promise.json()
+// export async function getServerSideProps(context){
+//   const c_name = context.params.courseId;
+//   const course_promise = await fetch(`http://localhost:3000/api/getlessons?c_name=${c_name}`)
+//   const props_contents = await course_promise.json()
 
 
-  return {
-    props: {props_contents: JSON.stringify(props_contents)}
-  }
-}
+//   return {
+//     props: {props_contents: JSON.stringify(props_contents)}
+//   }
+// }
 
 export default Course;

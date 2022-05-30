@@ -12,7 +12,7 @@ function Slug({ contents }) {
   const handleSubmit = async (e) => {
     const submittedData = {
       "doubt": msg,
-      "lesson_id": 12,
+      "lesson_id": subNo,
       "user_id": 24
     }
     const bodyData = JSON.stringify(submittedData)

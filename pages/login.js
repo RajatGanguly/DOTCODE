@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import Router from "next/router"
 import Link from "next/link";
 import Head from "next/head";
 
 function Login() {
+  // const router = Router()
+  const [user, setUser] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -13,16 +16,22 @@ function Login() {
       "password": password,
     }
     const bodyData = JSON.stringify(submittedData)
-    await fetch("http://localhost:3000/api/checkuser", {
+    const fetchData = await fetch("http://localhost:3000/api/checkuser", {
       method: 'POST',
       header: {
         'Content-Type': 'application/json',
       },
       body: bodyData,
     })
-    setEmail('')
-    setPassword('')
+    const authToken = await fetchData.json()
+    localStorage.setItem("token", JSON.stringify(authToken))
+    setEmail("")
+    setPassword("")
+    setUser()
+    // location.reload()
+    Router.push("/?r=1")
   }
+  
 
   return (
     <div>

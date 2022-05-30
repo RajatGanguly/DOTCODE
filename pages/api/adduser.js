@@ -4,7 +4,7 @@ const url = require('url');
 const env = require('env');
 import conn from "../../middleware/db_config";
 const bcrypt = require('bcryptjs');
-const JWT_SECRET_KEY = env.JWTSECRET;
+const JWT_SECRET_KEY = "cgfVGVGVGSS";
 const jwt = require('jsonwebtoken');
 
 const  handler = async (req, res) => {

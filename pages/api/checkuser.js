@@ -1,19 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-const url = require('url');
 import conn from "../../middleware/db_config";
 const bcrypt = require('bcryptjs');
-const JWT_SECRET_KEY = "cgfVGVGV#$GSS2327";
+const JWT_SECRET_KEY = "cgfVGVGVGSS";
 const jwt = require('jsonwebtoken');
 
 const  handler = async (req, res) => {
     if (req.method == "POST"){
         const user_body = JSON.parse(req.body)
 
-        const salt = await bcrypt.genSalt(10)
-        // const secPassword = await bcrypt.hash(user_body.password, salt);
-
-        // var sql = `INSERT INTO ${'users'} (${'name'}, ${'email'}, ${'password'}, ${'college'}) VALUES ('${user_body.name}','${user_body.email}','${secPassword}','${user_body.college}')`
         var sql = `SELECT * FROM ${'users'} WHERE ${'email'} = '${user_body.email}'`;
         conn.query(sql, async function(err, result){
             if(err){
@@ -34,7 +29,9 @@ const  handler = async (req, res) => {
                         }
                     }
                     const authToken = jwt.sign(data, JWT_SECRET_KEY)
-                    console.log(authToken)
+                    // console.log(typeof(authToken))
+                    
+                    // res.status(200).json({ authToken })
                     res.status(200).json({ authToken })
                 }
             }

@@ -1,10 +1,18 @@
 const mysql = require("mysql")
-const env = require("util/config");
+// const env = require("util/config");
 const conn = mysql.createConnection({
-    host: env.URL,
-    user: env.USERNAME,
-    password: env.PASSWORD,
-    database: env.DATABASENAME
+    // host: env.URL,
+    // user: env.USERNAME,
+    // password: env.PASSWORD,
+    // database: env.DATABASENAME
+    // host: "sql685.main-hosting.eu",
+    // user: "u375222219_dotcode",
+    // password: "ILoveWebsites69@",
+    // database: "u375222219_dotcode"
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "dot_code"
 })
 
 conn.connect(function(err){
