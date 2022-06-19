@@ -5,10 +5,10 @@ import { MdAccountCircle } from "react-icons/md";
 
 function Navbar(props) {
   if(props.user.value){
-    console.log(JSON.parse(props.user.value).authToken)
+    // console.log(JSON.parse(props.user.value).authToken)
   }
   else{
-    console.log("Not found")
+    // console.log("Not found")
   }
   
   return (

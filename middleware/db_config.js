@@ -1,18 +1,18 @@
 const mysql = require("mysql")
-// const env = require("util/config");
+// const env = require('dotenv').config()
 const conn = mysql.createConnection({
-    // host: env.URL,
-    // user: env.USERNAME,
-    // password: env.PASSWORD,
-    // database: env.DATABASENAME
-    // host: "sql685.main-hosting.eu",
-    // user: "u375222219_dotcode",
-    // password: "ILoveWebsites69@",
-    // database: "u375222219_dotcode"
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "dot_code"
+    // host: env.URLDC,
+    // user: env.USERNAMEDC,
+    // password: env.PASSWORDDC,
+    // database: env.DATABASENAMEDC
+    host: process.env.NEXT_PUBLIC_URL,
+    user: process.env.NEXT_PUBLIC_USERNAME,
+    password: process.env.NEXT_PUBLIC_PASSWORD,
+    database: process.env.NEXT_PUBLIC_DATABASENAME
+    // host: "localhost",
+    // user: "root",
+    // password: "",
+    // database: "dot_code"
 })
 
 conn.connect(function(err){

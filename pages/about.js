@@ -19,7 +19,7 @@ function About() {
               <img
                 alt="content"
                 className="object-cover object-center h-full w-full"
-                src="https://dummyimage.com/1200x500"
+                src="/images/about.jpeg"
               />
             </div>
             <div className="flex flex-col sm:flex-row mt-10">

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { ToastContainer , toast } from "react-toastify";
+// import './toast.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
   const [name, setName] = useState("");
@@ -21,7 +24,16 @@ function Signup() {
     setEmail('')
     setPassword('')
     setCollege('')
-    await fetch("http://localhost:3000/api/adduser", {
+    toast.success('You Signed up successfully! Now Log in', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    await fetch(`${window.location.origin}/api/adduser`, {
       method: 'POST',
       header: {
         'Content-Type': 'application/json',
@@ -35,6 +47,17 @@ function Signup() {
         <title>SIGNUP | DOTCODE</title>
       </Head>
       <section className="h-screen">
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
         <div className="container px-6 py-12 h-full">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">

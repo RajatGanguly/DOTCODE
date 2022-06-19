@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 const url = require('url');
-const env = require('env');
+const env = require('dotenv').config();
 import conn from "../../middleware/db_config";
 const bcrypt = require('bcryptjs');
 const JWT_SECRET_KEY = "cgfVGVGVGSS";
@@ -19,7 +19,7 @@ const  handler = async (req, res) => {
         console.log(sql)
         conn.query(sql, function(err, result){
             if(err){
-                res.status(404).json({ "error": "Some Internal Server Error" })
+                res.status(500).json({ "error": "Some Internal Server Error" })
                 throw err;
             } 
             else{

@@ -8,14 +8,17 @@ const jwt = require('jsonwebtoken');
 const  handler = async (req, res) => {
     if (req.method == "POST"){
         const user_body = JSON.parse(req.body)
+        console.log(user_body)
 
         var sql = `SELECT * FROM ${'users'} WHERE ${'email'} = '${user_body.email}'`;
-        conn.query(sql, async function(err, result){
+        await conn.query(sql, async function(err, result){
+            console.log(sql,err,result)
             if(err){
                 res.status(404).json({ "error": "Some Internal Server Error" })
                 throw err;
             } 
             else{
+                await console.log("Result"+result)
                 const checkPass = await bcrypt.compare(user_body.password, result[0].password)
                 if(!checkPass){
                     console.log("Pass wrong")

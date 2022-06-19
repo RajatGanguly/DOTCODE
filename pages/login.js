@@ -16,7 +16,7 @@ function Login() {
       "password": password,
     }
     const bodyData = JSON.stringify(submittedData)
-    const fetchData = await fetch("http://localhost:3000/api/checkuser", {
+    const fetchData = await fetch(`${window.location.origin}/api/checkuser`, {
       method: 'POST',
       header: {
         'Content-Type': 'application/json',
@@ -81,13 +81,13 @@ function Login() {
                   />
                 </div>
 
-                <div className="flex justify-between items-center mb-6">
+                {/* <div className="flex justify-between items-center mb-6">
                   <Link href={"/forget"}>
                     <a className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">
                       Forgot password?
                     </a>
                   </Link>
-                </div>
+                </div> */}
 
                 <button
                   type="submit"
