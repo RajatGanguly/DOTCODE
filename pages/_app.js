@@ -1,7 +1,7 @@
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar.jsx'
+import Head from 'next/head'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

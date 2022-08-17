@@ -9,13 +9,19 @@ const jwt = require('jsonwebtoken');
 
 const  handler = async (req, res) => {
     if (req.method == "POST"){
-        const user_body = JSON.parse(req.body)
-        console.log(user_body)
-
+        // console.log(req.body)
+        const {name, email, password, college} = JSON.parse(req.body)
+        
         const salt = await bcrypt.genSalt(10)
-        const secPassword = await bcrypt.hash(user_body.password, salt);
+        // console.log(user_body, salt)
+        // const password = req.body.password;
+        console.log(name, email, password, college);
+        if (password != undefined) {
+            var secPassword = await bcrypt.hash(password, salt);
+        }
+        // console.log("After lodu hashing" + user_body, salt, secPassword)
 
-        var sql = `INSERT INTO ${'users'} (${'name'}, ${'email'}, ${'password'}, ${'college'}) VALUES ('${user_body.name}','${user_body.email}','${secPassword}','${user_body.college}')`
+        var sql = `INSERT INTO ${'users'} (${'name'}, ${'email'}, ${'password'}, ${'college'}) VALUES ('${name}','${email}','${secPassword}','${college}')`
         console.log(sql)
         conn.query(sql, function(err, result){
             if(err){
@@ -24,6 +30,7 @@ const  handler = async (req, res) => {
             } 
             else{
                 res.status(200).json({ result })
+                
             }
         })
     }

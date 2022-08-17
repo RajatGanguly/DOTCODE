@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Router from "next/router"
 import Link from "next/link";
 import Head from "next/head";
+import { ToastContainer , toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   // const router = Router()
@@ -24,12 +26,27 @@ function Login() {
       body: bodyData,
     })
     const authToken = await fetchData.json()
-    localStorage.setItem("token", JSON.stringify(authToken))
-    setEmail("")
-    setPassword("")
-    setUser()
-    // location.reload()
-    Router.push("/?r=1")
+    // console.log(authToken)
+    if((authToken.error == "Invalid credentials") || (authToken.error == "Some Internal Server Error")){
+      toast.error('Invalid email or password', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    else{
+      console.log(authToken.error)
+      localStorage.setItem("token", JSON.stringify(authToken))
+      setEmail("")
+      setPassword("")
+      setUser()
+      // location.reload()
+      Router.push("/?r=1")
+    }
   }
   
 
@@ -39,11 +56,13 @@ function Login() {
         <title>LOGIN | .CODE</title>
       </Head>
       <section className="h-screen">
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover
+        />
         <div className="container px-6 py-12 h-full">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                src="/new_logo.jpg"
                 className="w-full"
                 alt="Phone image"
               />
@@ -81,13 +100,13 @@ function Login() {
                   />
                 </div>
 
-                {/* <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-6">
                   <Link href={"/forget"}>
                     <a className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">
                       Forgot password?
                     </a>
                   </Link>
-                </div> */}
+                </div>
 
                 <button
                   type="submit"

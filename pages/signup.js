@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { ToastContainer , toast } from "react-toastify";
-// import './toast.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
@@ -62,7 +61,7 @@ pauseOnHover
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                src="/new_logo.jpg"
                 className="w-full"
                 alt="Phone image"
               />

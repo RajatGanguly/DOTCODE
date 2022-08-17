@@ -45,7 +45,7 @@ function About() {
                   </h2>
                   <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                   <p className="text-base">
-                    Hi, I am dotcode. I provide learning with doubt clearing and real life projects. Join me today to be a industry level developer.
+                    Hi, we are dotcode. We provide learning with doubt clearing and real life projects. Join us today to be a industry level developer.
                   </p>
                 </div>
               </div>
@@ -75,6 +75,7 @@ function About() {
           </div>
         </div>
       </section>
+      
     </div>
   );
 }

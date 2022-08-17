@@ -25,13 +25,6 @@ const  handler = async (req, res) => {
             // console.log(result)
         }
     })
-    // if(category != ""){
-    //     var products = await Product.find({"category" :category })
-    // }
-    // else{
-    //     var products = await Product.find()
-    
-    // let products = await Product.find()
     
 }
 export default handler
