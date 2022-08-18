@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
-import Navbar from '../components/Navbar.jsx'
+import Navbar from '../components/Navbar'
 import Head from 'next/head'
 import '../styles/globals.css'
 
